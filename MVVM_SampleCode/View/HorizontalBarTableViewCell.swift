@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HorizontalBarTableViewCell: UITableViewCell {
+class HorizontalBarTableViewCell: ConfigurableCell {
+    var identifier: String = HorizontalBarTableViewCell.description()
     
     @IBOutlet weak var barView: HorizontalBarView! {
         didSet {
@@ -27,6 +28,10 @@ class HorizontalBarTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configCell(_ viewModel: ConfigurableCellViewModel?) {
+        
     }
     
 }

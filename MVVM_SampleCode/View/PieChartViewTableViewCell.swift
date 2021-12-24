@@ -8,7 +8,9 @@
 import UIKit
 import Combine
 
-class PieChartViewTableViewCell: UITableViewCell {
+class PieChartViewTableViewCell: ConfigurableCell {
+    var identifier: String = PieChartViewTableViewCell.description()
+
     
     @IBOutlet weak var pieChartView: PieChartView! {
         didSet {
@@ -23,6 +25,10 @@ class PieChartViewTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configCell(_ viewModel: ConfigurableCellViewModel?) {
+        
     }
     
 }

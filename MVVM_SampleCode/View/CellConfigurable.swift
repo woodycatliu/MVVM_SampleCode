@@ -19,7 +19,8 @@ extension ConfigurableCellViewModel {
 }
 
 protocol CellConfigurable {
-    func configCell(_ viewModel: ConfigurableCellViewModel)
+    var identifier: String { get }
+    func configCell(_ viewModel: ConfigurableCellViewModel?)
 }
 
 typealias ConfigurableCell = UITableViewCell & CellConfigurable

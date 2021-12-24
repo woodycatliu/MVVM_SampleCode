@@ -7,7 +7,8 @@
 
 import UIKit
 
-class BigTitleLabelTableViewCell: UITableViewCell {
+class BigTitleLabelTableViewCell: ConfigurableCell {
+    var identifier: String = BigTitleLabelTableViewCell.description()
     
     @IBOutlet weak var  titleLabel: UILabel!
 
@@ -21,5 +22,10 @@ class BigTitleLabelTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configCell(_ viewModel: ConfigurableCellViewModel?) {
+        
+    }
+    
     
 }

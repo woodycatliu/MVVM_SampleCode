@@ -8,7 +8,7 @@
 import UIKit
 
 class HorizontalBarTableViewCell: ConfigurableCell {
-    var identifier: String = HorizontalBarTableViewCell.description()
+    static var identifier: String = HorizontalBarTableViewCell.description()
     
     @IBOutlet weak var barView: HorizontalBarView! {
         didSet {

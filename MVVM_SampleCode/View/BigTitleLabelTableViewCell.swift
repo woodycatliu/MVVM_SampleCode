@@ -8,7 +8,7 @@
 import UIKit
 
 class BigTitleLabelTableViewCell: ConfigurableCell {
-    var identifier: String = BigTitleLabelTableViewCell.description()
+    static var identifier: String = BigTitleLabelTableViewCell.description()
     
     @IBOutlet weak var  titleLabel: UILabel!
 

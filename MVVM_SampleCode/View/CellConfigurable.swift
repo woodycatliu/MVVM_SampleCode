@@ -19,7 +19,7 @@ extension ConfigurableCellViewModel {
 }
 
 protocol CellConfigurable {
-    var identifier: String { get }
+    static var identifier: String { get }
     func configCell(_ viewModel: ConfigurableCellViewModel?)
 }
 

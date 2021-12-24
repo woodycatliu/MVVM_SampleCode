@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class PieChartViewTableViewCell: ConfigurableCell {
-    var identifier: String = PieChartViewTableViewCell.description()
+    static var identifier: String = PieChartViewTableViewCell.description()
 
     
     @IBOutlet weak var pieChartView: PieChartView! {

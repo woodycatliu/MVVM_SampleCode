@@ -9,7 +9,20 @@ import XCTest
 @testable import MVVM_SampleCode
 
 class MVVM_SampleCodeTests: XCTestCase {
+    
+    var data: Data!
 
+    override func setUp() {
+        super.setUp()
+        
+        if let d = JSONString.data(using: .utf8) {
+            data = d
+        } else {
+            XCTAssertThrowsError("Decode is error")
+        }
+    }
+    
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -19,11 +32,16 @@ class MVVM_SampleCodeTests: XCTestCase {
     }
 
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+        
+        let object = try JSONDecoder().decode(DataModel.self, from: data)
+        
+        XCTAssertEqual(object.firstList.count, 6)
+        XCTAssertEqual(object.secondList.count, 4)
+        XCTAssertEqual(object.values.count, 9)
+        XCTAssertEqual(object.values[0], 10)
+        XCTAssertEqual(object.battles.count, 6)
+        
+        print(object)
     }
 
     func testPerformanceExample() throws {

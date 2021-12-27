@@ -10,11 +10,10 @@ import Combine
 
 class PieChartViewTableViewCell: ConfigurableCell {
     static var identifier: String = PieChartViewTableViewCell.description()
-
     
     @IBOutlet weak var pieChartView: PieChartView! {
         didSet {
-            pieChartView.backgroundColor = .systemGray5
+            pieChartView.backgroundColor = .clear
         }
     }
     

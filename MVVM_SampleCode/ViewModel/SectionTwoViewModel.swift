@@ -30,3 +30,13 @@ struct SectionTwoCellViewModel: ConfigurableCellViewModel {
     let left: Int
     let right: Int
 }
+
+extension SectionTwoCellViewModel {
+    var leftText: String? {
+        "\(self.left)"
+    }
+    
+    var rightText: String? {
+        "\(self.right)"
+    }
+}

@@ -15,6 +15,7 @@ class BigTitleLabelTableViewCell: ConfigurableCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,7 +28,7 @@ class BigTitleLabelTableViewCell: ConfigurableCell {
         guard let viewModel = viewModel as? SectionThreeCellViewModel else {
             return
         }
-        titleLabel.text = viewModel.identifier
+        titleLabel.text = viewModel.title
     }
     
     

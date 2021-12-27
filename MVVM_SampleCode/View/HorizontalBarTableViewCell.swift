@@ -22,6 +22,7 @@ class HorizontalBarTableViewCell: ConfigurableCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -31,9 +32,11 @@ class HorizontalBarTableViewCell: ConfigurableCell {
     }
     
     func configCell(_ viewModel: ConfigurableCellViewModel?) {
-        guard let viewModel = viewModel as? SectionTwoCellViewModel else {
+        guard let model = viewModel as? SectionTwoCellViewModel else {
             return }
-        barView.setBarValue(right: viewModel.right, left: viewModel.left)
+        barView.setBarValue(right: model.right, left: model.left)
+        rightLabel.text = model.rightText
+        leftLabel.text = model.leftText
     }
     
 }

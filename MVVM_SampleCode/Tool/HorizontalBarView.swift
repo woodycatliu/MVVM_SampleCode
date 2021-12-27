@@ -100,6 +100,7 @@ extension HorizontalBarView {
         let rightFrame: CGRect = .init(x: leftWidth, y: 0, width: rightWidth, height: bounds.height)
 
         let leftPath = UIBezierPath(rect: leftFrame)
+//        let leftPath = UIBezierPath(roundedRect: leftFrame, byRoundingCorners: .allCorners, cornerRadii: .init(width: leftFrame.width / 2, height: leftFrame.height / 2))
         let rightPath = UIBezierPath(rect: rightFrame)
 
         leftLayer.path = leftPath.cgPath

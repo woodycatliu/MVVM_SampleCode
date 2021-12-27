@@ -11,7 +11,7 @@ import Combine
 class IntegateViewModel {
     
     enum SectionType: Int, CaseIterable {
-        case one, two, three, four
+        case one = 0 , two, three, four
     }
     
     var sectionCount: Int {
@@ -34,6 +34,9 @@ class IntegateViewModel {
     
     var reload: AnyPublisher<Void, Never>?
     
+    init() {
+        binding()
+    }
 }
 
 // MARK: Binding
@@ -55,7 +58,7 @@ extension IntegateViewModel {
 extension IntegateViewModel {
     
     private var oneSectionCount: Int {
-        return 1
+        return twoSectionData == nil ? 0 : 1
     }
     
     private var twoSectionCount: Int {
@@ -70,8 +73,8 @@ extension IntegateViewModel {
         return fourSectionData?.count ?? 0
     }
     
-    func numberOfRows(_ indexPath: IndexPath)-> Int {
-        guard let type = SectionType.init(rawValue: indexPath.section)
+    func numberOfRows(_ section: Int)-> Int {
+        guard let type = SectionType.init(rawValue: section)
         else { return 0 }
 
         let count: Int
@@ -138,7 +141,7 @@ extension IntegateViewModel {
 // MARK: API
 extension IntegateViewModel {
     
-    private func fetch() {
+    func fetch() {
         
         APIService.fetchData()
             .sink(receiveCompletion: { _ in}, receiveValue: {

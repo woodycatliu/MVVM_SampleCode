@@ -24,7 +24,10 @@ class BigTitleLabelTableViewCell: ConfigurableCell {
     }
     
     func configCell(_ viewModel: ConfigurableCellViewModel?) {
-        
+        guard let viewModel = viewModel as? SectionThreeCellViewModel else {
+            return
+        }
+        titleLabel.text = viewModel.identifier
     }
     
     

@@ -22,3 +22,9 @@ struct SectionFourViewModel {
         list = array
     }
 }
+
+extension SectionFourViewModel {
+    var count: Int {
+        return 1 + list.count
+    }
+}

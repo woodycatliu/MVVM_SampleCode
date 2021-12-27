@@ -31,7 +31,9 @@ class HorizontalBarTableViewCell: ConfigurableCell {
     }
     
     func configCell(_ viewModel: ConfigurableCellViewModel?) {
-        
+        guard let viewModel = viewModel as? SectionTwoCellViewModel else {
+            return }
+        barView.setBarValue(right: viewModel.right, left: viewModel.left)
     }
     
 }

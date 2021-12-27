@@ -28,7 +28,8 @@ class PieChartViewTableViewCell: ConfigurableCell {
     }
     
     func configCell(_ viewModel: ConfigurableCellViewModel?) {
-        
+        guard let viewModel = viewModel as? SectionOneViewModel else { return }
+        pieChartView.setValues(values: viewModel.values)
     }
     
 }

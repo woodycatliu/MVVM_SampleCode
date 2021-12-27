@@ -55,19 +55,19 @@ extension IntegateViewModel {
 extension IntegateViewModel {
     
     private var oneSectionCount: Int {
-        return 0
+        return 1
     }
     
     private var twoSectionCount: Int {
-        return 0
+        return twoSectionData?.list.count ?? 0
     }
     
     private var threeSectionCount: Int {
-        return 0
+        return threeSectionData?.list.count ?? 0
     }
     
     private var fourSectionCount: Int {
-        return 0
+        return fourSectionData?.count ?? 0
     }
     
     func numberOfRows(_ indexPath: IndexPath)-> Int {
@@ -88,6 +88,51 @@ extension IntegateViewModel {
         }
         return count
     }
+}
+
+extension IntegateViewModel {
+    
+    func cellViewModel(_ indexPath: IndexPath)-> ConfigurableCellViewModel? {
+        guard let type = SectionType.init(rawValue: indexPath.section)
+        else { return nil }
+        switch type {
+        case .one:
+            return getOneCellViewModel(indexPath)
+        case .two:
+            return getTwoCellViewModel(indexPath)
+        case .three:
+            return getThreeCellViewModel(indexPath)
+        case .four:
+            return getFourCellViewModel(indexPath)
+        }
+    }
+    
+    private func getOneCellViewModel(_ indexPath: IndexPath)-> ConfigurableCellViewModel? {
+        return oneSectionData
+    }
+    
+    private func getTwoCellViewModel(_ indexPath: IndexPath)-> ConfigurableCellViewModel? {
+        guard let list = twoSectionData?.list,
+              list.indices.contains(indexPath.row) else { return nil }
+        return list[indexPath.row]
+    }
+    
+    private func getThreeCellViewModel(_ indexPath: IndexPath)-> ConfigurableCellViewModel? {
+        guard let list = threeSectionData?.list,
+              list.indices.contains(indexPath.row) else { return nil }
+        return list[indexPath.row]    }
+    
+    private func getFourCellViewModel(_ indexPath: IndexPath)-> ConfigurableCellViewModel? {
+        guard let viewModel = fourSectionData else { return nil }
+        if indexPath.row == 0 {
+            return viewModel.pie
+        }
+        else if viewModel.list.indices.contains(indexPath.row - 1) {
+            return viewModel.list[indexPath.row - 1]
+        }
+        return nil
+    }
+    
 }
 
 // MARK: API

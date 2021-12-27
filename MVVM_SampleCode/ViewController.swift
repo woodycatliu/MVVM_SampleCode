@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         tv.register(UINib(nibName: "HorizontalBarTableViewCell", bundle: nil), forCellReuseIdentifier: HorizontalBarTableViewCell.identifier)
         tv.register(UINib(nibName: "BigTitleLabelTableViewCell", bundle: nil), forCellReuseIdentifier: BigTitleLabelTableViewCell.identifier)
         tv.dataSource = self
+        tv.delegate = self
         return tv
     }()
     
@@ -42,6 +43,16 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController {
+    private func binding() {
+        viewModel.reload?
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: {
+                self.tableView.reloadData()
+            }).store(in: &cancellBag)
+    }
+}
+
 // MARK: UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     
@@ -61,13 +72,15 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 }
-
-extension ViewController {
-    private func binding() {
-        viewModel.reload?
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: {
-                self.tableView.reloadData()
-            }).store(in: &cancellBag)
+ 
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        viewModel.cellViewModel(indexPath)?.height ?? UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        viewModel.header(section)
+        
     }
 }

@@ -5,7 +5,7 @@
 //  Created by Woody Liu on 2021/12/24.
 //
 
-import Foundation
+import UIKit
 
 
 struct SectionTwoViewModel {
@@ -27,6 +27,7 @@ struct SectionTwoViewModel {
 
 struct SectionTwoCellViewModel: ConfigurableCellViewModel {
     var identifier: String = HorizontalBarTableViewCell.identifier
+    var height: CGFloat? { return 40 }
     let left: Int
     let right: Int
 }

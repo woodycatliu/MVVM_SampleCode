@@ -12,6 +12,19 @@ class IntegateViewModel {
     
     enum SectionType: Int, CaseIterable {
         case one = 0 , two, three, four
+        
+        var headerTitle: String {
+            switch self {
+            case .one:
+                return "Section One"
+            case .two:
+                return "Section Two"
+            case .three:
+                return "Section Three"
+            case .four:
+                return "Section Four"
+            }
+        }
     }
     
     var sectionCount: Int {
@@ -93,6 +106,15 @@ extension IntegateViewModel {
     }
 }
 
+// MARK: Header
+extension IntegateViewModel {
+    
+    func header(_ section: Int)-> String? {
+        return SectionType.init(rawValue: section)?.headerTitle
+    }
+}
+
+// MARK: Cell
 extension IntegateViewModel {
     
     func cellViewModel(_ indexPath: IndexPath)-> ConfigurableCellViewModel? {
@@ -135,7 +157,6 @@ extension IntegateViewModel {
         }
         return nil
     }
-    
 }
 
 // MARK: API

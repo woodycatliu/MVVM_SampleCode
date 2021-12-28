@@ -14,6 +14,7 @@ class PieChartViewTableViewCell: ConfigurableCell {
     @IBOutlet weak var pieChartView: PieChartView! {
         didSet {
             pieChartView.backgroundColor = .clear
+            pieChartView.setHighlight(indexs: 0)
         }
     }
     
